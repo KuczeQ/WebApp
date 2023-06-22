@@ -54,8 +54,8 @@ def decrypt_description(encrypted_text):
 def add_task():
     title = request.form['title']
     description = request.form['description']
-    ip_address = request.remote_addr  # Adres IP użytkownika
-    animal_image = get_random_animal_image()  # Pobranie losowego obrazka
+    ip_address = request.remote_addr  
+    animal_image = get_random_animal_image()  
 
     encrypted_description = encrypt_description(description)
 
