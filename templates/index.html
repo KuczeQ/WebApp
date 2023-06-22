@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fde8e8;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff69b4;
+            padding-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .task-item .task-title {
+            flex: 1;
+            color: #333;
+        }
+
+        .task-item .task-description {
+            flex: 2;
+            color: #555;
+        }
+
+        .task-item .task-image {
+            flex: 1;
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 50%;
+        }
+
+        .task-item .delete-btn,
+        .add-btn {
+            margin-left: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .task-item .delete-btn:hover,
+        .add-btn:hover {
+            background-color: #d32f2f;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Task Manager</h1>
+    <form action="/add" method="POST">
+        <input type="text" name="title" placeholder="Title" required>
+        <input type="text" name="description" placeholder="Description" required>
+        <button class="add-btn" type="submit">Add Task</button>
+    </form>
+    <ul class="task-list">
+        {% for task in tasks %}
+        <li class="task-item">
+            <div class="task-title">{{ task[1] }}</div>
+            <div class="task-description">{{ task[2] }}</div>
+            <img class="task-image" src="{{ task[4] }}" alt="Animal Image">
+            <a class="delete-btn" href="/delete/{{ task[0] }}">Delete</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
